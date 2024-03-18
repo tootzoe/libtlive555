@@ -16,4 +16,8 @@
 
 #include <stdio.h>
 
+
+int startMediaSrv(const char *mediaFolderPath);
+void stopLive555Server(void);
+
 #endif /* testcfile_h */

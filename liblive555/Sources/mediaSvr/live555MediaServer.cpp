@@ -18,13 +18,13 @@ along with this library; if not, write to the Free Software Foundation, Inc.,
 // main program
 #include "libtlive555/BasicUsageEnvironment.hh"
 #include "libtlive555/GroupsockHelper.hh"
- 
+  
 #include "DynamicRTSPServer.hh"
 #include "version.hh"
 //#include <GroupsockHelper.hh> // for "weHaveAnIPv*Address()"
-
+  
 volatile char isExit = 0;
-
+  
 extern "C"
 void stopLive555Server(void){
     isExit = 1;

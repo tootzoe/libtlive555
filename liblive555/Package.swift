@@ -5,9 +5,10 @@ import PackageDescription
 
 
 
-//let liveBinary = Target.binaryTarget(name: "libtlive555", path: "bins/libtlive555.xcframework.zip")
-let liveBinary = Target.binaryTarget(name: "libtlive555", url: "", checksum: "dc9a755d34543f64228f2b1c7838deee3e98d0c8888e0394df90f3cfb7c5761a")
+//let liveBinary = Target.binaryTarget(name: "libtlive555", path: "bins/libtlive555.xcframework.zip") 
+let liveBinary = Target.binaryTarget(name: "libtlive555", url: "https://github.com/tootzoe/libtlive555/blob/main/releases/v20240215/libtlive555.xcframework.zip?raw=true" , checksum: "7eb3ef3cc952a8701c32f35e18ee1642cc33804d9b08ca37d4907a20ba242f08" )
 
+   
 
 
 let package = Package(
@@ -23,13 +24,26 @@ let package = Package(
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(name: "mediaSvr",
-               publicHeadersPath: "include"
+               publicHeadersPath: "include",
+                cSettings: [
+                    .define("NO_OPENSSL"),
+                    .define("BSD=1"),
+                    .define("_FILE_OFFSET_BITS=64"),
+                    .define("_LARGEFILE_SOURCE=1"),
+                    .define("HAVE_SOCKADDR_LEN=1"),
+                    .define("SOCKLEN_T=socklen_t"),
+                    .define("NEED_XLOCALE_H")
+                ]
                ),
         .target(
             name: "liblive555",
-        dependencies: ["libtlive555" , "mediaSvr"]),
+        dependencies: ["libtlive555" , "mediaSvr"]
+           
+       
+        ),
         .testTarget(
             name: "liblive555Tests",
             dependencies: ["liblive555"]),
     ]
 )
+ 
