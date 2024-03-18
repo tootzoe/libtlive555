@@ -1,0 +1,6 @@
+
+## some things like 
+# !myfile.c
+# !abc_*.zip
+!releases/   # i want to include all files in 'release' folder
+
